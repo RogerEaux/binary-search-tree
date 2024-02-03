@@ -48,10 +48,15 @@ function createBST(array) {
   function insert(value) {
     let currentNode = root;
 
+    if (currentNode === null) {
+      currentNode = createNode(value);
+    }
+
     while (true) {
       if (value === currentNode.value) {
         throw new Error('Value is already in tree');
       }
+      //  Insert value if desired space is free
       if (value > currentNode.value && currentNode.right === null) {
         currentNode.right = createNode(value);
         return currentNode.right;
@@ -60,6 +65,7 @@ function createBST(array) {
         currentNode.left = createNode(value);
         return currentNode.left;
       }
+      //  Traverse to next desired space
       if (value > currentNode.value) {
         currentNode = currentNode.right;
       } else {
