@@ -45,9 +45,33 @@ function createBST(array) {
     }
   }
 
+  function insert(value) {
+    let currentNode = root;
+
+    while (true) {
+      if (value === currentNode.value) {
+        throw new Error('Value is already in tree');
+      }
+      if (value > currentNode.value && currentNode.right === null) {
+        currentNode.right = createNode(value);
+        return currentNode.right;
+      }
+      if (value < currentNode.value && currentNode.left === null) {
+        currentNode.left = createNode(value);
+        return currentNode.left;
+      }
+      if (value > currentNode.value) {
+        currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
+      }
+    }
+  }
+
   return {
     root,
     prettyPrint,
+    insert,
   };
 }
 
