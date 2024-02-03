@@ -15,7 +15,7 @@ function mergeSort(arr) {
   let rightPointer = leftLimit;
   const rightLimit = aux.length;
 
-  while (leftPointer < leftLimit || rightPointer < rightLimit) {
+  while (true) {
     if (aux[leftPointer] < aux[rightPointer]) {
       arr.push(aux[leftPointer]);
       leftPointer += 1;
@@ -31,8 +31,6 @@ function mergeSort(arr) {
       return arr.concat(aux.slice(leftPointer, leftLimit));
     }
   }
-
-  return arr;
 }
 
 export default mergeSort;
