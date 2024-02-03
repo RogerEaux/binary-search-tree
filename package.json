@@ -9,6 +9,7 @@
   "name": "binary-search-tree",
   "description": "An implementation of a balanced binary search tree in JS",
   "version": "1.0.0",
+  "type": "module",
   "main": "node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
