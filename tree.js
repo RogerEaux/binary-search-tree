@@ -76,10 +76,47 @@ function createBST(array) {
     }
   }
 
+  function remove(value) {
+    function removeNode(currentNode, val) {
+      //  Return null if not found
+      if (!currentNode) return null;
+
+      if (val === currentNode.value) {
+        //  Node becomes null if no children
+        if (!currentNode.left && !currentNode.right) return null;
+
+        //  Child node replaces parent if only one child
+        if (!currentNode.left) return currentNode.right;
+        if (!currentNode.right) return currentNode.left;
+
+        //  Nearest greater succesor is found if two children
+        let succesor = currentNode.right;
+        while (succesor.left) {
+          succesor = succesor.left;
+        }
+
+        currentNode.right = removeNode(currentNode.right, succesor.value);
+
+        return currentNode;
+      }
+
+      // Traverse to next search space
+      if (val > currentNode.value) {
+        currentNode.right = removeNode(currentNode.right, val);
+        return currentNode;
+      }
+      currentNode.left = removeNode(currentNode.left, val);
+      return currentNode;
+    }
+
+    root = removeNode(root, value);
+  }
+
   return {
     root,
     prettyPrint,
     insert,
+    remove,
   };
 }
 

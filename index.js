@@ -8,3 +8,8 @@ tree.insert(10);
 console.log('Insert 0');
 tree.insert(0);
 tree.prettyPrint();
+console.log('Remove 7');
+tree.remove(7);
+console.log('Remove 0');
+tree.remove(0);
+tree.prettyPrint();
