@@ -18,3 +18,4 @@ console.log('Find 7', tree.find(7).value);
 console.log('Find 4', tree.find(4));
 console.log('BFS', tree.levelOrder());
 console.log('BFS recursively', tree.levelOrderRec());
+console.log('DFS in order', tree.inOrder());
