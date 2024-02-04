@@ -46,11 +46,13 @@ function createBST(array) {
   }
 
   function insert(value) {
-    let currentNode = root;
-
-    if (currentNode === null) {
-      currentNode = createNode(value);
+    //  Insert to root if tree is empty
+    if (root === null) {
+      root = createNode(value);
+      return root;
     }
+
+    let currentNode = root;
 
     while (true) {
       if (value === currentNode.value) {
