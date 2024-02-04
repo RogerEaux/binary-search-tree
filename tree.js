@@ -134,12 +134,78 @@ function createBST(array) {
     return findNode(root, value);
   }
 
+  function levelOrder(callback = null) {
+    const seen = [];
+    const values = [];
+    seen.push(root);
+
+    while (seen.length > 0) {
+      const currentNode = seen[0];
+
+      //  Enqueue children
+      if (currentNode.left) {
+        seen.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        seen.push(currentNode.right);
+      }
+
+      if (callback) {
+        callback(currentNode);
+      } else {
+        values.push(currentNode.value);
+      }
+
+      seen.shift();
+    }
+
+    if (values.length > 0) return values;
+
+    return null;
+  }
+
+  function levelOrderRec(callback) {
+    function traverse(seen, values) {
+      if (seen.length > 0) {
+        const currentNode = seen[0];
+
+        //  Enqueue children
+        if (currentNode.left) {
+          seen.push(currentNode.left);
+        }
+        if (currentNode.right) {
+          seen.push(currentNode.right);
+        }
+
+        if (callback) {
+          callback(currentNode);
+        } else {
+          values.push(currentNode.value);
+        }
+
+        seen.shift();
+        traverse(seen, values);
+      }
+
+      if (values.length > 0) return values;
+
+      return null;
+    }
+
+    const seen = [];
+    const values = [];
+    seen.push(root);
+    return traverse(seen, values);
+  }
+
   return {
     root,
     prettyPrint,
     insert,
     remove,
     find,
+    levelOrder,
+    levelOrderRec,
   };
 }
 
