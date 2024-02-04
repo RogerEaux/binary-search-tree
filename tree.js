@@ -334,6 +334,11 @@ function createBST(array) {
     return checkBalance(root);
   }
 
+  function rebalance() {
+    //  It's a gimme
+    root = buildTree(inOrder());
+  }
+
   return {
     root,
     prettyPrint,
@@ -348,6 +353,7 @@ function createBST(array) {
     height,
     depth,
     isBalanced,
+    rebalance,
   };
 }
 
