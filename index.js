@@ -14,3 +14,5 @@ tree.prettyPrint();
 console.log('Remove 0');
 tree.remove(0);
 tree.prettyPrint();
+console.log('Find 7', tree.find(7).value);
+console.log('Find 4', tree.find(4));

@@ -115,11 +115,31 @@ function createBST(array) {
     root = removeNode(root, value);
   }
 
+  function find(value) {
+    function findNode(currentNode, val) {
+      //  Return null if not found
+      if (!currentNode) return null;
+
+      if (val === currentNode.value) {
+        return currentNode;
+      }
+
+      // Traverse to next search space
+      if (val > currentNode.value) {
+        return findNode(currentNode.right, val);
+      }
+      return findNode(currentNode.left, val);
+    }
+
+    return findNode(root, value);
+  }
+
   return {
     root,
     prettyPrint,
     insert,
     remove,
+    find,
   };
 }
 
