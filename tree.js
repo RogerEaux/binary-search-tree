@@ -53,7 +53,7 @@ function createBST(array) {
       }
 
       if (val === currentNode.value) {
-        throw new Error('Value is already in tree');
+        return currentNode;
       }
 
       //  Insert value if desired space is free
