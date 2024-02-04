@@ -1,6 +1,6 @@
 function mergeSort(arr) {
-  //  Array is sorted when it only has 1 element
-  if (arr.length === 1) return arr;
+  //  Array is sorted when it only has 1 or 0 elements
+  if (arr.length === 1 || arr.length === 0) return arr;
 
   //  Sort both left and right sides into a single array
   const aux = mergeSort(arr.slice(0, Math.round(arr.length / 2))).concat(
