@@ -52,6 +52,7 @@ function createBST(array) {
         return createNode(val);
       }
 
+      //  If it already exists dont change it
       if (val === currentNode.value) {
         return currentNode;
       }
