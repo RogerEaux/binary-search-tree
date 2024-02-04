@@ -1,31 +1,41 @@
 import createBST from './tree.js';
 
-const tree = createBST([3, 5, 7, 9, 1, 2, 3, 4, 1]);
+//  Driver script
 
-tree.prettyPrint();
-console.log('Insert 10');
-tree.insert(10);
-console.log('Insert 0');
-tree.insert(0);
-tree.prettyPrint();
-console.log('Remove 4');
-tree.remove(4);
-tree.prettyPrint();
-console.log('Remove 0');
-tree.remove(0);
-tree.prettyPrint();
-console.log('Find 7', tree.find(7).value);
-console.log('Find 4', tree.find(4));
-console.log('BFS', tree.levelOrder());
-console.log('BFS recursively', tree.levelOrderRec());
-console.log('DFS pre order', tree.preOrder());
-console.log('DFS in order', tree.inOrder());
-console.log('DFS post order', tree.postOrder());
-tree.prettyPrint();
-console.log('Height of 5', tree.height(tree.find(5)));
-console.log('Depth of 10', tree.depth(tree.find(10)));
-console.log('Balanced?', tree.isBalanced());
-console.log('Insert 11');
-tree.insert(11);
-tree.prettyPrint();
-console.log('Balanced?', tree.isBalanced());
+function createRandomArray() {
+  const array = [];
+
+  for (let i = 0; i < 10; i += 1) {
+    array.push(Math.floor(Math.random() * 100));
+  }
+
+  return array;
+}
+
+function addTreeElements(tree) {
+  for (let i = 0; i < 5; i += 1) {
+    tree.insert(Math.floor(Math.random() * 100 + 100));
+  }
+
+  return tree;
+}
+
+let randomTree = createBST(createRandomArray());
+
+randomTree.prettyPrint();
+console.log('Balanced?', randomTree.isBalanced());
+console.log('BFS level order', randomTree.levelOrder());
+console.log('DFS pre order', randomTree.preOrder());
+console.log('DFS in order', randomTree.inOrder());
+console.log('DFS post order', randomTree.postOrder());
+randomTree = addTreeElements(randomTree);
+randomTree.prettyPrint();
+console.log('Balanced?', randomTree.isBalanced());
+console.log('Rebalance');
+randomTree.rebalance();
+randomTree.prettyPrint();
+console.log('Balanced?', randomTree.isBalanced());
+console.log('BFS level order', randomTree.levelOrder());
+console.log('DFS pre order', randomTree.preOrder());
+console.log('DFS in order', randomTree.inOrder());
+console.log('DFS post order', randomTree.postOrder());
