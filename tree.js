@@ -308,6 +308,32 @@ function createBST(array) {
     return traverseDepth(root, node);
   }
 
+  function isBalanced() {
+    function checkBalance(node) {
+      //  No children is balanced
+      if (!node.left && !node.right) return true;
+
+      //  Only one child with height greater than 1 is not balanced else it is balanced
+      if (node.left && !node.right) {
+        if (height(node.left > 1)) return false;
+        return true;
+      }
+      if (!node.left && node.right) {
+        if (height(node.right > 1)) return false;
+        return true;
+      }
+
+      //  Both children must be balanced
+      if (Math.abs(height(node.left) - height(node.right)) <= 1) {
+        if (checkBalance(node.left) && checkBalance(node.right)) return true;
+      }
+
+      return false;
+    }
+
+    return checkBalance(root);
+  }
+
   return {
     root,
     prettyPrint,
@@ -321,6 +347,7 @@ function createBST(array) {
     postOrder,
     height,
     depth,
+    isBalanced,
   };
 }
 
