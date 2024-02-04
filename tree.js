@@ -95,6 +95,7 @@ function createBST(array) {
           succesor = succesor.left;
         }
 
+        currentNode.value = succesor.value;
         currentNode.right = removeNode(currentNode.right, succesor.value);
 
         return currentNode;
