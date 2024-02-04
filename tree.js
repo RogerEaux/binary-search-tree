@@ -279,6 +279,35 @@ function createBST(array) {
     return traverse(root, values);
   }
 
+  function height(node) {
+    if (!node) return null;
+
+    //  No children
+    if (!node.left && !node.right) return 0;
+
+    //  Each level of descendants increase height
+    if (node.left && !node.right) return 1 + height(node.left);
+    if (node.right && !node.left) return 1 + height(node.right);
+
+    return 1 + Math.max(height(node.left), height(node.right));
+  }
+
+  function depth(node) {
+    function traverseDepth(currentNode, targetNode) {
+      if (targetNode.value === currentNode.value) return 0;
+
+      // Traverse to next search space while increasing depth
+      if (targetNode.value > currentNode.value) {
+        return 1 + traverseDepth(currentNode.right, node);
+      }
+      return 1 + traverseDepth(currentNode.left, node);
+    }
+
+    if (!node) return null;
+
+    return traverseDepth(root, node);
+  }
+
   return {
     root,
     prettyPrint,
@@ -290,6 +319,8 @@ function createBST(array) {
     preOrder,
     inOrder,
     postOrder,
+    height,
+    depth,
   };
 }
 
