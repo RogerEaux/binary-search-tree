@@ -198,6 +198,33 @@ function createBST(array) {
     return traverse(seen, values);
   }
 
+  function preOrder(callback = null) {
+    function traverse(currentNode, values) {
+      if (!currentNode) return null;
+
+      //  Visit root
+      if (callback) {
+        callback(currentNode);
+      } else {
+        values.push(currentNode.value);
+      }
+
+      //  Visit left
+      traverse(currentNode.left, values);
+
+      //  Visit right
+      traverse(currentNode.right, values);
+
+      if (!callback) return values;
+
+      return null;
+    }
+
+    const values = [];
+
+    return traverse(root, values);
+  }
+
   function inOrder(callback = null) {
     function traverse(currentNode, values) {
       if (!currentNode) return null;
@@ -225,6 +252,33 @@ function createBST(array) {
     return traverse(root, values);
   }
 
+  function postOrder(callback = null) {
+    function traverse(currentNode, values) {
+      if (!currentNode) return null;
+
+      //  Visit left
+      traverse(currentNode.left, values);
+
+      //  Visit right
+      traverse(currentNode.right, values);
+
+      //  Visit root
+      if (callback) {
+        callback(currentNode);
+      } else {
+        values.push(currentNode.value);
+      }
+
+      if (!callback) return values;
+
+      return null;
+    }
+
+    const values = [];
+
+    return traverse(root, values);
+  }
+
   return {
     root,
     prettyPrint,
@@ -233,7 +287,9 @@ function createBST(array) {
     find,
     levelOrder,
     levelOrderRec,
+    preOrder,
     inOrder,
+    postOrder,
   };
 }
 
