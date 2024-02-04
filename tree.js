@@ -46,34 +46,36 @@ function createBST(array) {
   }
 
   function insert(value) {
-    //  Insert to root if tree is empty
-    if (root === null) {
-      root = createNode(value);
-      return root;
-    }
+    function insertNode(currentNode, val) {
+      //  Insert if node is empty
+      if (!currentNode) {
+        return createNode(val);
+      }
 
-    let currentNode = root;
-
-    while (true) {
-      if (value === currentNode.value) {
+      if (val === currentNode.value) {
         throw new Error('Value is already in tree');
       }
+
       //  Insert value if desired space is free
-      if (value > currentNode.value && currentNode.right === null) {
-        currentNode.right = createNode(value);
-        return currentNode.right;
+      if (val > currentNode.value && !currentNode.right) {
+        currentNode.right = createNode(val);
+        return currentNode;
       }
-      if (value < currentNode.value && currentNode.left === null) {
-        currentNode.left = createNode(value);
-        return currentNode.left;
+      if (val < currentNode.value && !currentNode.left) {
+        currentNode.left = createNode(val);
+        return currentNode;
       }
+
       //  Traverse to next desired space
-      if (value > currentNode.value) {
-        currentNode = currentNode.right;
-      } else {
-        currentNode = currentNode.left;
+      if (val > currentNode.value) {
+        currentNode.right = insertNode(currentNode.right, val);
+        return currentNode;
       }
+      currentNode.left = insertNode(currentNode.left, val);
+      return currentNode;
     }
+
+    root = insertNode(root, value);
   }
 
   function remove(value) {
