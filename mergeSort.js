@@ -23,6 +23,7 @@ function mergeSort(arr) {
       arr.push(aux[rightPointer]);
       rightPointer += 1;
     }
+
     //  When the limit of one of the sides is reached the rest of the other is merged
     if (leftPointer === leftLimit) {
       return arr.concat(aux.slice(rightPointer, rightLimit));
